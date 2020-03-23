@@ -61,5 +61,17 @@ def Histograma(df):
     plt.yticks(df['f'])
     plt.xticks(bins)
     plt.hist(x, bins=bins, edgecolor='black', linewidth=2)
+    
+def Porcentaje(df, valorLimite, fila):
+    n = df['f'].sum()
+    fanterior = df.iloc[fila.index.values[0]-1].F
+    return ( ( ( ( ( valorLimite - fila["LI"] ) / (fila["LS"] - fila["LI"]) ) * fila["f"] ) + fanterior) * 100 ) / n
+
+def Percentil(df, k):
+    n = df['f'].sum()
+    valor = (n * k / 100)
+    fila = df[df["X"] == df[(df["F"] >= valor) & (df["F"] > valor)].iloc[0].X]
+    fanterior = df.iloc[fila.index.values[0]-1].F
+    return fila["LI"] + ( ( ( (n * k) / 100 ) - fanterior ) / fila["f"] ) * (fila["LS"] - fila["LI"])
 
     
