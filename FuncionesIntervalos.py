@@ -34,7 +34,7 @@ def CoeficienteVariacion(df):
     return (desvio / promedio) * 100
 
 def Moda(df):
-    return df['x'][df['f'].idxmax()]
+    return df['X'][df['f'].idxmax()]
 
 def Mediana(df):
     # Calculo Mediana
